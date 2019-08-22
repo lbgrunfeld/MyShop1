@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyShop.Core.Models
 {
-    public class BasketItems : BaseEntity
+    public class BasketItem : BaseEntity
     {
         public string BasketId { get; set; }
         public string ProductId { get; set; }
