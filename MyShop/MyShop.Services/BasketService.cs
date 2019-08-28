@@ -1,4 +1,4 @@
-﻿using Myshop.Core.Contracts;
+﻿using MyShop.Core.Contracts;
 using MyShop.Core.Models;
 using MyShop.Core.ViewModels;
 using System;
@@ -33,7 +33,7 @@ namespace MyShop.Services
             if (cookie != null)
             {
                 string basketId = cookie.Value;
-                if (string.IsNullOrEmpty(basketId))
+                if (!string.IsNullOrEmpty(basketId))
                 {
                     basket = basketContext.Find(basketId);
                 }
@@ -48,6 +48,14 @@ namespace MyShop.Services
 
                
 
+            }
+
+            else
+            {
+                if (createIfNull)
+                {
+                    basket = CreateNewBasket(httpContext);
+                }
             }
             return basket;
 
@@ -82,7 +90,7 @@ namespace MyShop.Services
                     ProductId = productId,
                     Quantity = 1
                 };
-            basket.BasketItems.Add(item);
+                basket.BasketItems.Add(item);
 
             }
             else
@@ -103,7 +111,7 @@ namespace MyShop.Services
             BasketItem item = basket.BasketItems.FirstOrDefault(i => i.Id == itemId);
 
 
-            if (item == null)
+            if (item != null)
             {
                 basket.BasketItems.Remove(item);
                 basketContext.Commit();
@@ -123,6 +131,7 @@ namespace MyShop.Services
                                {
                                    Id = b.Id,
                                    Quantity = b.Quantity,
+                                   ProductName = p.Name,
                                    Image = p.Image,
                                    Price = p.Price
 
@@ -159,5 +168,13 @@ namespace MyShop.Services
             else
                 return model;
         }
+
+        public void ClearBasket(HttpContextBase httpContext)
+        {
+            Basket basket = GetBasket(httpContext, false);
+            basket.BasketItems.Clear();
+            basketContext.Commit();
+        }
+
     }
 }

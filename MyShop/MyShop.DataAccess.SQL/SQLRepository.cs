@@ -1,4 +1,4 @@
-﻿using Myshop.Core.Contracts;
+﻿using MyShop.Core.Contracts;
 using MyShop.Core;
 using System;
 using System.Collections.Generic;

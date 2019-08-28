@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using MyShop.Core;
 
-namespace Myshop.Core.Contracts
+namespace MyShop.Core.Contracts
 {
     public interface IRepository<T> where T : BaseEntity
     {

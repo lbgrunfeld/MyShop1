@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Myshop.Core.Contracts;
-using Myshop.DataAccess.InMemory;
+using MyShop.Core.Contracts;
+using MyShop.DataAccess.InMemory;
 using MyShop.Core.Models;
 using MyShop.Core.ViewModels;
-using MyShop.DataAccess.InMemory;
+ 
 
 namespace MyShop.WebUI.Controllers
 {
